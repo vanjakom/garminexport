@@ -102,3 +102,24 @@ to your list of dependencies:
 and run pip with you dependency file as input:
 
   `pip install -r requirements.txt`
+
+Docker setup
+============
+To build Docker image use:
+  `docker build -t garmin-export .`
+
+Setup directory in which activities will be kept on host, example /data/garmin-export.
+
+Add configuration in which credentials will be kept, save as /data/garmin-export/setup.json:
+```
+{
+    "username": "<USERNAME>",
+    "password": "<PASSWORD>",
+    "log_level": "INFO",
+    "formats": ["gpx","json_details"]
+}
+```
+
+To perform backup cycle use:
+  `docker run -v /data/garmin-export/:/data/ garmin-export`
+
